@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+        name: todo-deployment
+spec:
+  selector:
+    matchLabels:
+      app: todolist-app
+  replicas: 1
+  minReadySeconds: 60
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: "100%"
+      maxSurge: "100%"      
+  template:
+    metadata:
+      labels:
+        app: todolist-app
+    spec:
+      containers:
+      - name: todolist
+        image: shikshanayak/101-todo-app
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000
+          protocol: TCP
+
+
