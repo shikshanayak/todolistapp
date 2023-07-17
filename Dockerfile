@@ -1,7 +1,7 @@
-FROM node:10-alpine as node
+FROM node:10-alpine
 WORKDIR /app
 COPY . .
 RUN yarn install --production 
 
 CMD ["node", "/app/src/index.js"]
-EXPOSE 80
+EXPOSE 3000
